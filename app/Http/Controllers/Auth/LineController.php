@@ -30,21 +30,17 @@ class LineController extends Controller
         try {
             $user = Socialite::driver('line')->stateless()->user();
             $finduser = User::where('line_id', $user->id)->first();
-     
-            if($finduser){
-     
+            if($finduser) {
                 Auth::login($finduser);
-    
                 return redirect('/dashboard');
-     
             }else{
                 $newUser = User::create([
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'line_id'=> $user->id,
-                    'password' => encrypt('123456dummy')
+                    'name'        => $user->name,
+                    'email'       => $user->email,
+                    'line_id'     => $user->id,
+                    'line_avatar' => $user->avatar,
+                    'password'    => encrypt('123456dummy')
                 ]);
-    
                 Auth::login($newUser);
      
                 return redirect('/dashboard');

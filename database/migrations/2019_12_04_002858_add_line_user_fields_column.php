@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddLineIdColumn extends Migration
+class AddLineUserFieldsColumn extends Migration
 {
     /**
      * Run the migrations.
@@ -15,6 +15,7 @@ class AddLineIdColumn extends Migration
     {
         Schema::table('users', function ($table) {
             $table->string('line_id')->nullable();
+            $table->string('line_avatar')->nullable();
         });
     }
 
