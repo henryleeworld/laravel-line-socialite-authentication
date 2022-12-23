@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Auth;
-use Exception;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Auth;
+use Exception;
 use Socialite;
   
 class LineController extends Controller
@@ -30,10 +30,11 @@ class LineController extends Controller
         try {
             $user = Socialite::driver('line')->stateless()->user();
             $finduser = User::where('line_id', $user->id)->first();
-            if($finduser) {
+            if ($finduser) {
                 Auth::login($finduser);
                 return redirect('/dashboard');
             }else{
+                // email scope isn't returned as a value of the scope property even if access to it has been granted.
                 $newUser = User::create([
                     'name'        => $user->name,
                     'email'       => $user->email,

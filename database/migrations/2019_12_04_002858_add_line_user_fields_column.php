@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddLineUserFieldsColumn extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -14,6 +14,7 @@ class AddLineUserFieldsColumn extends Migration
     public function up()
     {
         Schema::table('users', function ($table) {
+            $table->string('email')->nullable()->change();
             $table->string('line_id')->nullable();
             $table->string('line_avatar')->nullable();
         });
@@ -28,4 +29,4 @@ class AddLineUserFieldsColumn extends Migration
     {
         //
     }
-}
+};
